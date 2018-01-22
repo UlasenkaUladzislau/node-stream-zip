@@ -723,7 +723,7 @@ ZipEntry.prototype.readDataHeader = function(data) {
 };
 
 ZipEntry.prototype.read = function(data, offset) {
-    this.name = data.slice(offset, offset += this.fnameLen).toString();
+    this.name = data.slice(offset, offset += this.fnameLen).toString().replace(/\\/g, '\/');
     var lastChar = data[offset - 1];
     this.isDirectory = (lastChar == 47) || (lastChar == 92);
 
